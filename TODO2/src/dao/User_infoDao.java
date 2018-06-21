@@ -19,7 +19,7 @@ public class User_infoDao {
 ////	private static final String SQL_INSERT_INTO_USER_INFO_AND_USER = "INSERT INTO user_info (user_name,telephone , password) VALUES(?,?,?)";
 //	private static final String SQL__SELECT_USER_ID = "SELECT user_id FROM user_info ";
 //
-//	private static final String SQL_SELECT_ID = "SELECT * FROM user_info WHERE user_id = ?  ";
+
 //	private static final String SQL_SELECT_NAME = "SELECT * FROM user_info WHERE user_name = ?  ";
 //	private static final String SQL_SELECT_TEL = "SELECT * FROM user_info WHERE telephone = ?  ";
 //	private static final String SQL_SELECT_NAME_TEL = "SELECT * FROM user_info WHERE user_name = ? AND telephone = ?  ";
@@ -31,10 +31,11 @@ public class User_infoDao {
 
 	private static final String SQL_INSERT_INTO_USERTABLE_AND_USER = "INSERT INTO usertable (user_id,user_name, password) VALUES(?,?,?)";
 	private static final String SQL_INSERT_INTO_TASK = "INSERT INTO task (title,task,limitdate,name,status) VALUES(?,?,?,?,?)";
-	private static final String SQL_SELECT_ALL = "SELECT id,title,task,limitdate,name,status FROM task";
+	private static final String SQL_SELECT_ALL = "SELECT id,title,task,limitdate,name,status FROM task ORDER BY id" ;
 	private static final String SQL_SELECT_TASK_ID = "SELECT * FROM task WHERE id = ?  ";
 	private static final String SQL_DELETE="DELETE FROM task WHERE id = ?";
 	private static final String SQL_UPDATE="UPDATE task SET title=?, task=?, limitdate=?, name=?, status=? WHERE id=?";
+//	private static final String SQL_SELECT_ID = "SELECT * FROM task WHERE id = ?  ";
 
 
 
@@ -42,6 +43,7 @@ public class User_infoDao {
 		this.con=con;
 	}
 
+	//タスクの追加
 	public void register(String title, String task, String limitdate, String name, String status) {
 		// TODO 自動生成されたメソッド・スタブ
 		try (PreparedStatement stmt = con.prepareStatement(SQL_INSERT_INTO_TASK)){
@@ -57,7 +59,7 @@ public class User_infoDao {
 		}
 	}
 
-
+	//タスクの全件表示
 	public List<Task> findAll(){
 		List<Task> list = new ArrayList<Task>();
 
@@ -74,7 +76,7 @@ public class User_infoDao {
 		return list;
 	}
 
-
+	//タスクのID探す
 	public List<Task> findbyid(Integer id) {
 		List<Task> list = new ArrayList<Task>();
 
@@ -112,6 +114,8 @@ public class User_infoDao {
 			stmt.setString(3, limitdate);
 			stmt.setString(4, name);
 			stmt.setString(5, status);
+			stmt.setInt(6, id);
+
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -137,6 +141,23 @@ public class User_infoDao {
 		}
 
 	}
+
+//	//更新　入力されたIDを探すよー
+//	public Task findID(Integer id) {
+//		try (PreparedStatement stmt = con.prepareStatement(SQL_SELECT_ID)) {
+//			stmt.setInt(1,id );
+//			ResultSet rs = stmt.executeQuery();
+//
+//			while (rs.next()) {
+//				return new Task(rs.getInt("id"),rs.getString("title"),rs.getString("task"),rs.getString("limitdate"),rs.getString("name"),rs.getString("status"));
+//			}
+//
+//		} catch (SQLException e) {
+//			throw new RuntimeException(e);
+//		}
+//
+//		return null;
+//	}
 
 
 //	public User_info findByIdAndPass(String user_id,String user_name, String telephone ,String password) {

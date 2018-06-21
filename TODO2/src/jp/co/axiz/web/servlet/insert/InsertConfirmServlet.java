@@ -61,7 +61,7 @@ public class InsertConfirmServlet extends HttpServlet {
 			uid.register(newid,newname,newpass);
 
 			//MAXIDを探すメソッド呼び出し
-			session.setAttribute("defoid",uid.findmaxid() );
+//			session.setAttribute("defoid",uid.findmaxid() );
 
 			request.getRequestDispatcher("insertResult.jsp").forward(request, response);
 

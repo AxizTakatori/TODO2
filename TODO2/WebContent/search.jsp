@@ -40,7 +40,6 @@
 		</form>
 		</td>
 
-<%-- 				<td><a href="detail?id=<c:out value="${dto.id}" />">更新・削除画面へ</a></td> --%>
 
 			</tr>
 		</c:forEach>

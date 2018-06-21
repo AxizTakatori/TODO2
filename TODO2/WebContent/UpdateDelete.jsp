@@ -32,8 +32,8 @@ window.onload = function() {
 <table class="table">
 	<tr>
 		<th>id</th>
-<%-- 				<td><input type="text" name="title" value="<c:out value="${select.id}" />" size="5"/></td> --%>
-								<td>${select.id}</td>
+<%-- 			<td><input name= "id" value="${select.id}"></td> --%>
+		<td><input type="text" name="id" value="<c:out value="${select.id}" />" size="1" readonly/></td>
 	</tr>
 	<tr>
 		<th>タイトル</th>
@@ -62,11 +62,13 @@ window.onload = function() {
 </table>
 
 <input type="submit" class="btn btn-success" value="更新する" />
+	    <input type="submit" name="button" value="削除する" onclick="location.href='delete'; return false;">
 </form>
 
-	<form id="delete" action="delete" method="POST">
-	<input type="submit" class="btn btn-warning" value="削除する" />
-</form>
+<!-- 	<form id="delete" action="delete" method="POST">
+	    <input type="submit" name="button" value="削除する" onclick="location.href='delete'; return false;"> -->
+<!-- 	<input type="submit" class="btn btn-warning" value="削除する" /> -->
+
 
 </div>
 </body>

@@ -15,7 +15,7 @@ import service.selectservice;
 /**
  * Servlet implementation class DeleteConfirmServlet
  */
-@WebServlet("/delete")
+@WebServlet("/deleteConfilm")
 public class DeleteConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -48,7 +48,12 @@ public class DeleteConfirmServlet extends HttpServlet {
 		// idから取得
 		HttpSession session= request.getSession();
 		Task task=(Task)session.getAttribute("info");
+
+		System.out.print("aaaaaaaaaaaaa");
+
 		Integer deleteId=task.getId();
+
+		System.out.print("bbbbbbbbbbbbbbb");
 
 		//削除して結果画面へ
 		selectservice taskInfo=new selectservice();

@@ -1,6 +1,7 @@
 package jp.co.axiz.web.servlet.update;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.User_infoDao;
 import entity.Task;
+import util.DbUtil;
 
 /**
  * Servlet implementation class UpdateInputServlet
@@ -44,14 +47,20 @@ public class UpdateInputServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		// ログインID、パスワードを取得
+
+
+		HttpSession session=request.getSession();
+
 		String newTitle = request.getParameter("newTitle");
 		String newTask = request.getParameter("newTask");
 		String newLimitdate = request.getParameter("newLimitdate");
 		String newName = request.getParameter("newName");
 		String newStatus = request.getParameter("newStatus");
 
+		Task taskinfo = (Task) session.getAttribute("update");
+		Integer id = taskinfo.getId();
 
-		HttpSession session=request.getSession();
+
 		Task task =(Task) session.getAttribute("select");
 
 		// 入力値のチェック
@@ -65,6 +74,13 @@ public class UpdateInputServlet extends HttpServlet {
 
 			request.getRequestDispatcher("UpdateDelete.jsp").forward(request, response);
 			}else {
+				try(Connection conn = DbUtil.getConnection()){
+					User_infoDao userinfoDao = new User_infoDao(conn);
+					userinfoDao.update(id,newTitle,newTask,newLimitdate,newName,newStatus);
+					request.getRequestDispatcher("updateResult.jsp").forward(request, response);
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
 
 //				session.setAttribute("newname", newname);
 //				session.setAttribute("newtel", newtel);
@@ -81,7 +97,7 @@ public class UpdateInputServlet extends HttpServlet {
 //
 //				}
 //			System.out.print("ccc");
-			request.getRequestDispatcher("updateConfirm.jsp").forward(request, response);
+			request.getRequestDispatcher("updateResult.jsp").forward(request, response);
 		}
 	}
 
