@@ -35,18 +35,31 @@
 <!-- Custom styles for this template -->
 <link href="css/creative.min.css" rel="stylesheet">
 
-<title>TODOタスク管理</title>
+
+
+<link href="css/commons.css" rel="stylesheet">
+
+
+
 
 </head>
 
 <body id="page-top">
 
+		<c:if test="${not empty msg}">
+			<p class = "error">${msg}</p>
+		</c:if>
+
 	<header class="masthead text-center text-white d-flex">
 	<div class="container my-auto">
 		<div class="row">
 			<div class="col-lg-10 mx-auto">
-				<h1 class="text-uppercase">
+
+				<h1>
 					<strong>TODO管理</strong>
+
+
+
 				</h1>
 				<hr>
 			</div>
@@ -63,7 +76,7 @@
 				class="form-signin">
 				<h3 class="form-signin-heading">
 					<div class="col-lg-10 mx-auto">
-						<h1 class="text-uppercase">
+						<h1>
 							<strong>Welcome Back! Please Sign In</strong>
 						</h1>
 						<hr>

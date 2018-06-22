@@ -51,8 +51,8 @@ public class LoginServlet extends HttpServlet {
 
 		//何も入力されていないときは『ログインできませんでした』を表示
 		if((user_id==null || password==null)||("".equals(user_id))||("".equals(password))) {
-			request.setAttribute("msg", "ログインできませんでした。");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.setAttribute("msg", "Account is missing");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 			return;
 		}
 
@@ -73,9 +73,9 @@ public class LoginServlet extends HttpServlet {
 
 		}else {
 			//合っていない場合『ログイン失敗』を表示
-			request.setAttribute("msg", "ログイン失敗。");
+			request.setAttribute("msg", "Account is missing");
 			//次画面指定
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 
 	}
