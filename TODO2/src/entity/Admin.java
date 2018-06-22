@@ -1,35 +1,35 @@
 package entity;
 
 public class Admin {
-	private String admin_id;
-	private String admin_name;
+	private String user_id;
+	private String user_name;
 	private String password;
 
 
 	public Admin() {
 	}
 
-	public Admin(String admin_id,String admin_name,String password) {
+	public Admin(String user_id,String user_name,String password) {
 		super();
-		this.admin_id = admin_id;
-		this.admin_name = admin_name;
+		this.user_id = user_id;
+		this.user_name = user_name;
 		this.password = password;
 	}
 
-	public String getAdmin_id() {
-		return admin_id;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setAdmin_id(String admin_id) {
-		this.admin_id = admin_id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
-	public String getAdmin_name() {
-		return admin_name;
+	public String getUser_name() {
+		return user_name;
 	}
 
-	public void setAdmin_name(String admin_name) {
-		this.admin_name = admin_name;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
 	public String getPassword() {
@@ -39,8 +39,4 @@ public class Admin {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
-
-
 }

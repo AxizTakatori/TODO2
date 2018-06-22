@@ -62,7 +62,7 @@ window.onload = function() {
 </table>
 
 <input type="submit" class="btn btn-success" value="更新する" />
-	    <input type="submit" name="button" value="削除する" onclick="location.href='delete'; return false;">
+	    <input type="submit" name="button" class="btn btn-warning" value="削除する" onclick="location.href='delete'; return false;">
 </form>
 
 <!-- 	<form id="delete" action="delete" method="POST">

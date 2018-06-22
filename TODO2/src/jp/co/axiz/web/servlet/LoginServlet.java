@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import entity.Admin;
 import entity.Task;
@@ -45,7 +44,6 @@ public class LoginServlet extends HttpServlet {
 		//リクエスト、レスポンス時の文字化け防止
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("index.jsp; charset=UTF-8");
-		HttpSession session = request.getSession();
 
 		//フォームから入力された値を取得
 		String user_id = request.getParameter("id");
@@ -66,22 +64,12 @@ public class LoginServlet extends HttpServlet {
 		//入力されたものがDB内のadmin_id、passwordと合っているか判定
 		if(isSuccess) {
 
-			//合っていた場合はそのadminのidをセッションスコープに保存
-			session.setAttribute("loginname", login.getAdmin_name());
-
+			//タスクの全件表示
 			selectservice selectservice=new selectservice();
 			List<Task> select = selectservice.find();
 			request.setAttribute("userList", select);
 
 			request.getRequestDispatcher("search.jsp").forward(request, response);
-
-			//Daoの登録メソッド呼び出し
-//			Connection con=DbUtil.getConnection();
-//			User_infoDao uid =new User_infoDao(con);
-//			uid.register(title,task,limitdate,name,status);
-
-
-
 
 		}else {
 			//合っていない場合『ログイン失敗』を表示

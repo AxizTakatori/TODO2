@@ -12,6 +12,12 @@
 <title>TODOタスクの一覧</title>
 </head>
 <body>
+
+	<!--  セッションの内容がnullのとき、ログインページに飛ばす  -->
+<%-- 		<c:if test="${empty sessionScope.loginname}">
+		<c:redirect url="index.jsp"/>
+	</c:if> --%>
+
 	<jsp:include page="nav.jsp" />
 	<div class="container">
 	<table class="table table-bordered">
